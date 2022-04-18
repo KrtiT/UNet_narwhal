@@ -125,13 +125,9 @@ def find_peaks_scipy(x, has_height:int=0, hmin:np.float64=0.0, hmax:np.float64=0
 
     return peaks
 
-
-
 @njit
 def peak_freq(peak): 
     return len(peak)
-peak_freq( find_peaks_scipy(x) ) # 288
-
 
 #%% Function 'feature_extract' 
 
@@ -294,8 +290,6 @@ def peak_extract(A:np.ndarray, rate:float64, n_sec:float64, overlap:float64) -> 
     
   print('r = ', r)
   return df
-
-peak_extract( np.random.rand(100,3), 100, 1, 0.5 )
 
 
 #%% Make datasets to train and test for Random Forest and Logistic Regression
