@@ -153,10 +153,7 @@ def feature_extract(A:np.ndarray, rate:float64, n_sec:float64, overlap:float64) 
   W_l = rate*n_sec
   n = A.shape[0]
   
-  # https://stackoverflow.com/a/26289777
   df = np.full( (round(A.shape[0]//(W_l*(1-overlap))), 24), np.inf, dtype=np.float64)
-  # df = np.full( (round(A.shape[0]//(W_l*(1-overlap))), 20), np.inf, dtype=np.float64)
-  # df = np.full( (round(A.shape[0]//(W_l*(1-overlap))), 19), np.inf, dtype=np.float64)
   
   r = i = n
   r = i = 0
@@ -742,7 +739,7 @@ plt.show()
   
 
 
-#%% We do the same procedure of fitting and plotting with logistic regression
+#%% We do the same procedure of fitting and plotting with logistic regression (LR)
 
 from sklearn.linear_model import LogisticRegression
 
@@ -801,28 +798,12 @@ for i in range(len(whale)) :
 
   
 # vs. rare event correction
-
 # (tn, fp, fn, tp):
 # 0 : [36044  9626    14   231]
 # 1 : [35937  9432   377  1134]
 # 2 : [50119  4766    62   726]
 # 3 : [12302  1352    21    43]
 # 4 : [10621  2431    16   109]
-
-# i = 2
-# y_pred = LR.predict(X_test[i])
-# y_test[i]
-# print ( i, ':', confusion_matrix(y_test[i], y_pred).ravel() )
-
-# y_pred.max()
-# y_pred.min()
-
-# y_test[i].max()
-# y_test[i].min()
-
-# dt = Acc[i].iloc[round( test_ratio*Acc[i].shape[0] ):,:]
-# dt.iloc[np.where((y_pred > 0) * (y_test[i] > 0) * 1 > 0)[0]*rate,:5]
-
 
 
 #%% Count buzz per dive and plot
@@ -1078,8 +1059,6 @@ plt.ylim(max(dt.iloc[st:en,4].to_numpy()[::10]) + 8,
          min(dt.iloc[st:en,4].to_numpy()[::10]) - 5)
 plt.savefig('plot/pred_LR.svg', bbox_inches='tight')
 plt.show()
-
-
 
 #%% Finally, we have 3 figures from 3 models U-Net, Random Forest and Logistic Regression
 # We can concatenate them together to have Figure 11 in the article
