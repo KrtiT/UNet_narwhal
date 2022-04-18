@@ -102,17 +102,11 @@ def find_peaks_scipy(x, has_height:int=0, hmin:np.float64=0.0, hmax:np.float64=0
     x = x.astype(np.float64)
     if x.ndim != 1:
         raise ValueError('`x` must be a 1-D array')
-
-    # peaks, left_edges, right_edges = _local_maxima_1d(x)
     peaks = _local_maxima_1d(x)
 
     if has_height :
         # Evaluate height condition
         peak_heights = x[peaks]
-        # hmin, hmax = _unpack_condition_args(height, x, peaks)
-
-        # keep = _select_by_property(peak_heights, hmin, hmax)
-        # https://stackoverflow.com/a/21174962
         keep = np.full(peak_heights.size, True)
         if has_height == 1:
             keep &= (hmin <= peak_heights)
@@ -120,9 +114,6 @@ def find_peaks_scipy(x, has_height:int=0, hmin:np.float64=0.0, hmax:np.float64=0
             keep &= (peak_heights <= hmax)
 
         peaks = peaks[keep]
-        # peaks_l = peaks_l[keep]
-        # peaks_r = peaks_r[keep]
-
     return peaks
 
 @njit
@@ -1053,6 +1044,8 @@ plt.ylim(max(dt.iloc[st:en,4].to_numpy()[::10]) + 8,
          min(dt.iloc[st:en,4].to_numpy()[::10]) - 5)
 plt.savefig('plot/pred_LR.svg', bbox_inches='tight')
 plt.show()
+
+
 
 #%% Finally, we have 3 figures from 3 models U-Net, Random Forest and Logistic Regression
 # We can concatenate them together to have Figure 11 in the article
