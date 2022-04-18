@@ -974,7 +974,6 @@ for j in buzz_dive_1 :
 
 plt.xlabel('Time (minutes)', fontsize=20, labelpad=20)
 plt.ylabel('   ', fontsize=20, labelpad=20)
-# plt.title('Logistic Regression', fontsize=20 )
 title = ax.set_title('Logistic Regression', fontsize=20, position=(.5, 1.01),
            backgroundcolor='#D9D9D9', color='black',
            verticalalignment="bottom", horizontalalignment="center")
