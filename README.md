@@ -5,7 +5,7 @@ Free preprint availabe at https://arxiv.org/abs/2101.01992.
 
 We use supervised machine learning models and logistic regression to predict the buzz,
 
-File U_Time_7.html is the jupyter notebook of U-Net deep learning models, using cross validation. 
+File U_Time_7.ipynb is one of jupyter notebooks of U-Net deep learning models, using cross validation. 
 There we trained on 3 whales, validate on one whale, test on the remaining whale to evaluate
 the quality of the prediction vs ground truth buzzes.
 
